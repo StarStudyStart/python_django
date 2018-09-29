@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Post,Category
 import markdown
 
+from comments.forms import CommentForm
+
 
 # Create your views here.
 # 博客文章列表
@@ -22,7 +24,13 @@ def detail(request,pk):
                                         'markdown.extensions.codehilite',
                                         'markdown.extensions.toc',
                                         ])
-    return render(request,'blog/detail.html',context = {'post':post})
+    form = CommentForm()
+    comment_list = post.comment_set.all()
+    context = {'post':post,
+            'comment_list':comment_list,
+            'form':form
+            }
+    return render(request,'blog/detail.html',context = context)
     
 #归档详情列表
 def archives(request,year,month):
