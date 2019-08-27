@@ -6,13 +6,13 @@ from .models import Comment
 
 # Create your views here.
 def post_comment(request,post_pk):
-    post = get_object_or_404(Post,pk=post_pk)
+    post = get_object_or_404(Post, pk=post_pk)
     
     if request.method != post:
         form = CommentForm(request.POST)
         if form.is_valid():
             
-            comment = form.save(commit = False)
+            comment = form.save(commit=False)
             comment.post = post
             comment.save()
             return redirect(post)

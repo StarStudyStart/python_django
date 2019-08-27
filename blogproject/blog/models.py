@@ -24,10 +24,10 @@ class Post(models.Model):
     
     excerpt = models.CharField(max_length=200,blank = True)
     
-    category = models.ForeignKey(Category)
-    tag = models.ManyToManyField(Tag,blank = True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    tag = models.ManyToManyField(Tag, blank = True)
     
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     
     
     def __str__(self):
