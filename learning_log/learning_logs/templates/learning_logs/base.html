@@ -2,9 +2,12 @@
     <a href="{% url 'learning_logs:index' %}"> Leanring Log</a> -
     <a href="{% url 'learning_logs:topics' %}">Topics</a> -
     {% if user.is_authenticated %}
-        hello,m {{ user.username }}.
+        Hello,{{ user.username }}.
+        <a href="{% url 'users:logout' %}">log out</a>
     {% else %}
-        <a href="={% url 'users:login' %}">login in</a>
+{#        坑爹 多了个“=”让我 找了半天#}
+        <a href="{% url 'users:register' %}">register</a>-
+        <a href="{% url 'users:login' %}">login in</a>
     {% endif %}
 {% block content %}{% endblock content %}
 </p>
