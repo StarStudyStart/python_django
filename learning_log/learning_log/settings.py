@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'learning_logs.apps.LearningLogsConfig',
     'users.apps.UsersConfig',
-    # 第三方app应用
     'bootstrap3',
 ]
 
@@ -130,3 +129,7 @@ LOGIN_URL = '/users/login/'
 BOOTSTRAP3 = {
     'include_jquery':True,
 }
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
