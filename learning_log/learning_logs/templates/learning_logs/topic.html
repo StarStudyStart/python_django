@@ -19,7 +19,7 @@
             </div>
             <div class="panel-body">
                 <h4>
-                    {{ entry.text|linebreaks }}
+                    {{ entry.text|safe|linebreaks }}
                 </h4>
             </div><!--panel-->
         </div>
@@ -30,3 +30,10 @@
 	{% endfor %}
 
 {% endblock %}
+
+{% block toc %}
+    <div class="widget widget-content">
+        <h3 class="widget-title">文章目录</h3>
+        {{ entry.toc|safe }}
+    </div>
+{% endblock toc %}

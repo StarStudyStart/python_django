@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
+import markdown
 
 
 def index(request):
@@ -15,7 +16,7 @@ def index(request):
 def topics(request):
     """显示所有主题"""
     topics = Topic.objects.filter(owner=request.user).order_by('-date_added')
-    context = {'topics':topics}
+    context = {'topics': topics}
     return render(request, "learning_logs/topics.html", context)
 
 
@@ -27,9 +28,16 @@ def topic(request, topic_id):
     if topic.owner != request.user:
         raise Http404
     entries = topic.entry_set.order_by('-date_added')
+    for entry in entries:
+        entry.text = markdown.markdown(entry.text,
+                                      extensions=[
+                                          'markdown.extensions.extra',
+                                          'markdown.extensions.codehilite',
+                                          'markdown.extensions.toc',
+                                      ])
     context = {
-        'topic':topic,
-        'entries':entries
+        'topic': topic,
+        'entries': entries
     }
     return render(request, 'learning_logs/topic.html', context)
 
@@ -49,7 +57,7 @@ def new_topic(request):
             new_topic.save()
             return HttpResponseRedirect(reverse('learning_logs:topics'))
     
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
 
@@ -69,10 +77,9 @@ def new_entry(request, topic_id):
             new_entry = form.save(commit=False)
             new_entry.topic = topic
             new_entry.save()
-            return HttpResponseRedirect(reverse('learning_logs:topic',
-                args=(topic.id,)))
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=(topic.id,)))
                 
-    context = {'topic':topic, 'form':form}            
+    context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
 
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
-from .models import Post,Category
+from .models import Post, Category
 import markdown
 
 from comments.forms import CommentForm
@@ -19,19 +19,21 @@ def index(request):
 #跳转文章详情
 def detail(request,pk):
     post = get_object_or_404(Post,pk=pk)
-    post.body = markdown.markdown(post.body,
-                                    extensions=[
-                                        'markdown.extensions.extra',
-                                        'markdown.extensions.codehilite',
-                                        'markdown.extensions.toc',
-                                        ])
+    md = markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+    ])
+    post.body = md.convert(post.body)
+    post.toc = md.toc
+
     form = CommentForm()
     comment_list = post.comment_set.all()
-    context = {'post':post,
-            'comment_list':comment_list,
-            'form':form
-            }
-    return render(request,'blog/detail.html',context = context)
+    context = {'post': post,
+               'comment_list': comment_list,
+               'form': form
+               }
+    return render(request,'blog/detail.html', context=context)
     
 #归档详情列表
 def archives(request,year,month):
