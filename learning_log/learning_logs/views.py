@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 import markdown
+import re
 
 
 def index(request):
@@ -28,13 +29,18 @@ def topic(request, topic_id):
     if topic.owner != request.user:
         raise Http404
     entries = topic.entry_set.order_by('-date_added')
+    md = markdown.Markdown(extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+        ])
+
     for entry in entries:
-        entry.text = markdown.markdown(entry.text,
-                                      extensions=[
-                                          'markdown.extensions.extra',
-                                          'markdown.extensions.codehilite',
-                                          'markdown.extensions.toc',
-                                      ])
+        entry.text = md.convert(entry.text)
+
+        m = re.search(r'<div class="toc">\s*<ul>(.*)</ul>\s*</div>', md.toc, re.S)
+        entry.toc = m.group(1) if m is not None else ''
+        # entry.toc = md.toc
     context = {
         'topic': topic,
         'entries': entries

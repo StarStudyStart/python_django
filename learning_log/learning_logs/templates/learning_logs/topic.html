@@ -18,9 +18,16 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <h4>
+                {% if entry.toc %}
+                    <div class="col-sm-2">
+                        <h4>
+                            {{ entry.toc|safe }}
+                        </h4>
+                    </div>
+                {% endif %}
+                <div class="col-sm-10">
                     {{ entry.text|safe|linebreaks }}
-                </h4>
+                </div>
             </div><!--panel-->
         </div>
 	{% empty %}
