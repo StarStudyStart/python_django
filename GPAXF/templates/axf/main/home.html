@@ -1,0 +1,6 @@
+{% extends 'axf/base_main.html' %}
+{% load static %}
+{% block ext_js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'axf/js/swiper.jquery.js' %}"></script>
+{% endblock %}
