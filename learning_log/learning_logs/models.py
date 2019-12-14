@@ -33,5 +33,3 @@ class Entry(models.Model):
             text = self.text[:50] + '...'
             
         return text
-        
-    

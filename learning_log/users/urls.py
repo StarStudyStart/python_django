@@ -8,7 +8,7 @@ app_name = "users"
 
 urlpatterns = [
     # 登陆界面
-    path('login/', LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('login/', LoginView.as_view(template_name='../templates/users/login.html'), name='login'),
     # 登出界面
     path('logout/', views.logout_view, name='logout'),
     # 注册页面
