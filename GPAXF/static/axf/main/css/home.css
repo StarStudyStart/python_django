@@ -6,7 +6,9 @@ footer .home span {
     background-size: 0.513889rem;
 }
 
-
+/*
+    主页
+*/
 #home {
     padding: 1.5rem 0;
     overflow: auto;
@@ -16,7 +18,9 @@ footer .home span {
     position: fixed;
 }
 
-
+/*
+    顶部图片轮播
+*/
 #topSwiper {
     height: 3.95rem;
     width: 10rem;
@@ -34,6 +38,9 @@ footer .home span {
     height: 100%;
 }
 
+/*
+    图片导航
+*/
 .topMenu {
     padding-bottom: 0.26rem;
 }
@@ -51,22 +58,24 @@ footer .home span {
     width: 2.5rem;
     text-align: center;
     font-size: 0.35rem;
+    padding-top: 0.17rem;
 }
 
 .topMenu nav li img {
     width: 2.5rem;
 }
 
-
-#swiperMenu {
+/*
+    热卖导航
+*/
+#swiperHot {
     width: 100%;
 }
 
-/*
-#swiperMenu li{
+#swiperHot li{
   width:3.333333rem
-}*/
-#swiperMenu li img {
+}
+#swiperHot li img {
     width: 100%;
 }
 

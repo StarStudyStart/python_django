@@ -25,5 +25,29 @@
             <!-- 如果需要分页器 -->
             <div class="swiper-pagination"></div>
         </div>
+{#    首页导航   #}
+        <div class="topMenu">
+            <nav>
+                <ul>
+                    {% for main_nav in main_navs %}
+                        <li>
+                            <img src="{{main_nav.img}}" alt="{{ main_nav.name }}">
+                            <span>{{ main_nav.name }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+
+{#    热卖轮播      #}
+        <div class="swiper-container" id="swiperHot">
+            <ul class="swiper-wrapper">
+                {% for main_hot in main_hots %}
+                    <li class="swiper-slide">
+                        <img src="{{ main_hot.img }}" alt="{{ main_hot.name }}">
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}
