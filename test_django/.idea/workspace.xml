@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fe18951d-e93a-4061-a22f-2735fed2b118" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../PerfectCRM/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../PerfectCRM/.idea/.gitignore" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="test_django" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="yabin" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="crm" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="MIXED" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="ProjectId" id="1Y71wdXiTcX78kTKzXEbD9muSJv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PerfectCRM" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\python_django\test_django\templates\generic_view" />
+      <recent name="D:\python_django\test_django\templates\contact" />
+      <recent name="D:\python_django\test_django\contact" />
+      <recent name="D:\python_django\test_django\templates\mysite" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe18951d-e93a-4061-a22f-2735fed2b118" name="Default Changelist" comment="" />
+      <created>1582279058499</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582279058499</updated>
+      <workItem from="1582279064444" duration="1280000" />
+      <workItem from="1582364476335" duration="1331000" />
+      <workItem from="1582425813429" duration="455000" />
+      <workItem from="1582426287709" duration="8105000" />
+      <workItem from="1582447710662" duration="543000" />
+      <workItem from="1582448342054" duration="3053000" />
+      <workItem from="1582525449967" duration="9723000" />
+      <workItem from="1582597639055" duration="12434000" />
+      <workItem from="1582685227644" duration="15958000" />
+      <workItem from="1582723481097" duration="2422000" />
+      <workItem from="1582771937460" duration="3072000" />
+      <workItem from="1583043043475" duration="6071000" />
+      <workItem from="1583237540047" duration="5381000" />
+      <workItem from="1583243314847" duration="1792000" />
+      <workItem from="1583320141296" duration="9691000" />
+      <workItem from="1583500163521" duration="2457000" />
+    </task>
+    <task id="LOCAL-00001" summary="django官方文档学习测试项目&#10;1、URL配置及视图函数&#10;2、模型及高级配置&#10;3、模板及高级配置&#10;4、通用视图">
+      <created>1583331004813</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583331004813</updated>
+    </task>
+    <task id="LOCAL-00002" summary="study：通用视图ListView,DetailView">
+      <created>1583501843374</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1583501843374</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="django官方文档学习测试项目&#10;1、URL配置及视图函数&#10;2、模型及高级配置&#10;3、模板及高级配置&#10;4、通用视图" />
+    <MESSAGE value="study：通用视图ListView,DetailView" />
+    <option name="LAST_COMMIT_MESSAGE" value="study：通用视图ListView,DetailView" />
+  </component>
+</project>

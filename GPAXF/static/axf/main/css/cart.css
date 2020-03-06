@@ -1,8 +1,0 @@
-footer .cart span {
-    background: url(/static/axf/img/cart_selected.png) no-repeat;
-    background-size: 0.513889rem;
-}
-
-footer .cart dd {
-    color: orange;
-}
