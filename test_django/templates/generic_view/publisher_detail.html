@@ -8,6 +8,7 @@
 <h1>{{ object.name }}</h1>
 {% for book in object.book_set.all %}
     <li>{{ book.title }}</li>
+    <li>{{ object.last_accessed }}</li>
 {% endfor %}
 </body>
 </html>
