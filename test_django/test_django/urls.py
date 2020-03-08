@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('mysite.urls')),
     path('advance_template/', include('advance_template.urls')),
     path('generic_view/', include('generic_view.urls')),
+    path('not_html/', include('not_html.urls')),
+    path('users/', include('users.urls')),
     path('contact/', contact_views.contact_us, name='contact'),
     path('contact/thanks/', contact_views.contact_thanks, name='contact'),
     path('contact/thanks/', contact_views.contact_thanks, name='contact'),

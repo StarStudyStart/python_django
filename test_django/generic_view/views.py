@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.views import generic
 from generic_view.models import Publisher, Book
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -32,7 +34,9 @@ class PublisherDetail(generic.DetailView):
         return obj
 
 
-class BookList(generic.ListView):
+class BookList(LoginRequiredMixin, generic.ListView):
+    login_url = '/users/login/'
+    redirect_field_name = 'my_redirect_field'
     """查询特定对象的子集 self.object_list"""
     # queryset = Book.objects.all()
     queryset = Book.objects.filter(author__last_name='yabin')

@@ -35,10 +35,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # bootstrap3
+    'bootstrap3',
+    # my app
     'mysite.apps.MysiteConfig',
     'advance_template.apps.AdvanceTemplateConfig',
     'generic_view.apps.GenericViewConfig',
     'debug_toolbar',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +144,12 @@ EMAIL_PORT = 25
 # EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
+
+BOOTSTRAP3 = {
+    'include_jquery': True,
+}
+
+# login_required重定向路径
+LOGIN_URL = '/users/login/'
+
+LOGIN_REDIRECT_URL = '/generic_view/publisher/list_view/'
