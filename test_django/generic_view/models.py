@@ -1,6 +1,7 @@
 
 # Create your models here.
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -11,6 +12,7 @@ class Publisher(models.Model):
     city = models.CharField(max_length=64)
     state_province = models.CharField(max_length=64)
     website = models.URLField()
+    last_accessed = models.DateTimeField(blank=True, null=True, default=timezone.now)
 
     def __str__(self):
         return self.name

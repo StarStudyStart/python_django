@@ -1,4 +1,2 @@
 learning_log/ll_env/*
-/.idea/
-/untitled/.idea/
-/CMBD/.idea/
+/test_django/venv/
