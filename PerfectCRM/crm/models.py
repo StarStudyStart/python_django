@@ -5,7 +5,7 @@ from django.db import models
 
 class Customer(models.Model):
     """客户表"""
-    pass
+    name = models.CharField(max_length=20)
 
 
 class CustomerFollow(models.Model):
