@@ -1,0 +1,11 @@
+{% extends "mysite/index.html" %}
+{% block display_meta %}
+<table>
+    {% for k,v in values %}
+        <tr>
+            <td>{{ k }}</td>
+            <td>{{ v }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %} %}

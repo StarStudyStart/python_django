@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% include "mysite/title.html" %}
+</head>
+<body>
+<h2>Welcom back,{{ name }}!</h2>
+<p>Colock:{{ now|date:"F j,Y" }}</p>
+{% block display_meta %}
+
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

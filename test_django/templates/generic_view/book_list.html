@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            list-style-type: none;
+            background-color: aquamarine;
+            color: gray;
+            font-weight: bold;
+            text-align: center;
+            border: gray dashed 1px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% for book in object_list %}
+        <li>{{ book.title }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
