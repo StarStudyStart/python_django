@@ -1,3 +1,10 @@
 learning_log/ll_env/*
-/test_django/venv/
+/.idea/
+/untitled/.idea/
+/CMBD/.idea/
+/learning_log/.idea/
+/PerfectCRM/.idea/
 /test_django/.idea/
+/universal_env/.idea/
+/blogproject/.idea/
+/mysite/.idea/
