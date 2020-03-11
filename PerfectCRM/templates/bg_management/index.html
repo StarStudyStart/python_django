@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://v3.bootcss.com/examples/dashboard/#">CRM</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">{{ request.user.username }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="padding: 20px">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">Panel heading</div>
+            <!-- Table -->
+            <table class="table">
+                ...
+            </table>
+        </div>
+    </div>
+{% endblock %}

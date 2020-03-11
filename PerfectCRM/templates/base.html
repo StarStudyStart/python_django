@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CRM management">
+    <meta name="author" content="yabin">
+    {#    <link rel="icon" href="">#}
+
+    <title>CRM</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'crm/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{% static 'crm/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'crm/dashboard.css' %}" rel="stylesheet">
+</head>
+
+<body>
+{% block content %}
+{% endblock %}
+<script src="{% static 'crm/jquery.min.js.下载' %}"></script>
+<script src="{% static 'crm/bootstrap.min.js.下载' %}"></script>
+<script src="{% static 'crm/holder.min.js.下载' %}"></script>
+<script src="{% static 'crm/ie10-viewport-bug-workaround.js.下载' %}"></script>
+</body>
+</html>

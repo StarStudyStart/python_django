@@ -8,6 +8,10 @@ class Tag(models.Model):
     """标签"""
     name = models.CharField(max_length=32)
 
+    class Meta():
+        verbose_name = '标签'
+        verbose_name_plural = '标签'
+
 
 class Customer(models.Model):
     """客户表"""
@@ -28,6 +32,10 @@ class Customer(models.Model):
     def __str__(self):
         return 'name:%s,contact: %s' % (self.name, self.contact)
 
+    class Meta():
+        verbose_name = '客户/学生'
+        verbose_name_plural = '客户/学生'
+
 
 class CustomerFollow(models.Model):
     """跟进记录"""
@@ -45,6 +53,10 @@ class CustomerFollow(models.Model):
     def __str__(self):
         return self.customer + self.content
 
+    class Meta():
+        verbose_name = '跟进记录'
+        verbose_name_plural = '跟进记录'
+
 
 class Enrollment(models.Model):
     """报名表"""
@@ -58,6 +70,10 @@ class Enrollment(models.Model):
     def __str__(self):
         return "%s,%s" % (self.customer, self.contract_approved)
 
+    class Meta():
+        verbose_name = '报名表'
+        verbose_name_plural = '报名表'
+
 
 class Course(models.Model):
     """课程表"""
@@ -70,17 +86,25 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta():
+        verbose_name = '课程介绍'
+        verbose_name_plural = '课程介绍'
+
 
 class CourseList(models.Model):
     """班级表"""
     semester = models.CharField(max_length=64, verbose_name='学期')
-    course = models.ForeignKey("Course", on_delete=models.CASCADE)
-    teachers = models.ManyToManyField("UserProfile")
-    start_date = models.DateField(auto_now_add=True)
-    end_date = models.DateField(auto_now_add=True)
+    course = models.ForeignKey("Course", on_delete=models.CASCADE, verbose_name="课程")
+    teachers = models.ManyToManyField("UserProfile", verbose_name='老师')
+    start_date = models.DateField(auto_now_add=True, verbose_name='开始')
+    end_date = models.DateField(auto_now_add=True, verbose_name='结束')
 
     def __str__(self):
         return "%s, %s" % (self.semester, self.teachers)
+
+    class Meta():
+        verbose_name = '班级'
+        verbose_name_plural = '班级'
 
 
 class CourseRecord(models.Model):
@@ -96,27 +120,73 @@ class CourseRecord(models.Model):
     def __str__(self):
         return "%s, %s" % (self.day_num, self.homework_title)
 
+    class Meta():
+        verbose_name = '课堂记录'
+        verbose_name_plural = '课堂记录'
+
 
 class StudyRecord(models.Model):
     """学习记录表"""
-    pass
+    student = models.ForeignKey("Customer", on_delete=models.CASCADE)
+    course_record = models.ForeignKey("CourseRecord", on_delete=models.CASCADE)
+    attendance_choices = (
+        (0, '正常'),
+        (1, '迟到'),
+        (1, '缺勤'),
+        (2, '请将'),
+    )
+    attendance = models.SmallIntegerField(choices=attendance_choices, default=0, verbose_name="出席情况")
+    score_choices = (
+        (90, 'A'),
+        (80, 'B'),
+        (70, 'C'),
+        (60, 'D'),
+        (0, '不及格'),
+        (-1, 'N/A'),
+    )
+    score = models.SmallIntegerField(choices=score_choices, blank=True, null=True, verbose_name='成绩')
+    mem = models.TextField(max_length=128, blank=True, verbose_name='评语')
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s, %s" % (self.student.name, self.score)
+
+    class Meta:
+        verbose_name = '学习记录'
+        verbose_name_plural = '学习记录'
 
 
 class Role(models.Model):
     """角色表：讲师、学生、老板"""
     name = models.CharField(max_length=64)
+    menu = models.ManyToManyField("Menu")
 
     def __str__(self):
         return "%s" % self.name
+
+    class Meta():
+        verbose_name = '角色管理'
+        verbose_name_plural = '角色管理'
+
+
+class Menu(models.Model):
+    """菜单"""
+    name = models.CharField(max_length=64)
+    url_name = models.CharField(max_length=64)
+
+    class Meta():
+        verbose_name = '菜单'
+        verbose_name_plural = '菜单'
 
 
 class UserProfile(models.Model):
     """账户表"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    role = models.ManyToManyField(Role)
 
     def __str__(self):
         return self.user.username
 
     class Meta():
         verbose_name = '账户管理'
+        verbose_name_plural = '账户管理'
