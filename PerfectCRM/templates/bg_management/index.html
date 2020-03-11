@@ -13,13 +13,38 @@
         </div>
     </nav>
     <div class="container" style="padding: 20px">
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Panel heading</div>
-            <!-- Table -->
-            <table class="table">
-                ...
-            </table>
-        </div>
+        {% for app_name, app_tables in admins.items %}
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">{{ app_name }}</div>
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for table_name in  app_tables %}
+                        <tr>
+                            <td>{{ table_name }}</td>
+                            <td>{{ table_name }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>1,015</td>
+                        <td>sodales</td>
+                        <td>ligula</td>
+                        <td>in</td>
+                        <td>libero</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
