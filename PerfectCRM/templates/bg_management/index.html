@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bgm_extras %}
 {% block content %}
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -12,39 +13,28 @@
             </div>
         </div>
     </nav>
-    <div class="container" style="padding: 20px">
-        {% for app_name, app_tables in admins.items %}
-            <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading">{{ app_name }}</div>
-                <!-- Table -->
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                        <th>Header</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for table_name in  app_tables %}
-                        <tr>
-                            <td>{{ table_name }}</td>
-                            <td>{{ table_name }}</td>
-                        </tr>
-                    {% endfor %}
-                    <tr>
-                        <td>1,015</td>
-                        <td>sodales</td>
-                        <td>ligula</td>
-                        <td>in</td>
-                        <td>libero</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        {% endfor %}
+    <div class="container" style="padding: 20px;margin-left: 20px;width: auto">
+        {% block container %}
+            {% for app_name, app_tables in admins.items %}
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">{{ app_name }}</div>
+                    <!-- Table -->
+                    <table class="table">
+                        <tbody>
+                        {% for table_name, model_class in  app_tables.items %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'bgm:model_list' app_name table_name %}">{% get_verbose_name model_class.model %}</a>
+                                </td>
+                                <td>增加</td>
+                                <td>修改</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        {% endblock %}
     </div>
 {% endblock %}

@@ -16,25 +16,32 @@ class Tag(models.Model):
 class Customer(models.Model):
     """客户表"""
     name = models.CharField(max_length=20, verbose_name='客户名称')
-    contact = models.CharField(max_length=64, verbose_name='联系方式')
+    qq_number = models.CharField(max_length=32, verbose_name='QQ')
     phone = models.CharField(max_length=20, blank=True, null=True, verbose_name='联系电话')
     referral_choices = (
         (0, '百度'),
         (1, '知乎'),
-        (2, '介绍')
+        (2, '介绍'),
     )
     referral = models.SmallIntegerField(choices=referral_choices, verbose_name='来源')
     consult_course = models.ForeignKey("Course", verbose_name='咨询课程', on_delete=models.CASCADE)
     content = models.TextField(blank=True, null=True, verbose_name='描述')
     consultant = models.ForeignKey("UserProfile", on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)
+    status_choices = (
+        (0, '已入学'),
+        (1, '未入学'),
+        (2, '暂不入学'),
+    )
+    status = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='状态')
+    date = models.DateTimeField(auto_now_add=True,verbose_name='创建日期')
 
     def __str__(self):
-        return 'name:%s,contact: %s' % (self.name, self.contact)
+        return 'name:%s,contact: %s' % (self.name, self.qq_number)
 
-    class Meta():
+    class Meta:
         verbose_name = '客户/学生'
         verbose_name_plural = '客户/学生'
+        unique_together = ['name', 'qq_number', 'phone']
 
 
 class CustomerFollow(models.Model):
@@ -183,6 +190,7 @@ class UserProfile(models.Model):
     """账户表"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.ManyToManyField(Role)
+    profile_photo = models.ImageField()
 
     def __str__(self):
         return self.user.username

@@ -9,5 +9,6 @@ from bg_management import views
 
 app_name = 'bgm'
 urlpatterns = [
-    path('index/', views.index, name='index')
+    path('index/', views.index, name='index'),
+    path('<str:app_name>/<str:table_name>/', views.model_list, name='model_list')
 ]

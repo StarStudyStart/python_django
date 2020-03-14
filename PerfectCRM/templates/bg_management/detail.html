@@ -1,0 +1,66 @@
+{% extends 'bg_management/index.html' %}
+{% load bgm_extras %}
+{% block container %}
+    <div class="panel panel-info">
+        <div class="panel-heading">{% get_verbose_name admin_class.model %}</div>
+        <div class="panel-body" style="margin-left: 0">
+            <div class="col-lg-6">
+                <form method="get">
+                    <div class="input-group">
+                        <input type="text" name="referral" class="form-control" placeholder="Search for source">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"
+                        >搜索</button></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                {% for column in admin_class.list_display %}
+                    <th>{% return_field_verbose_name admin_class column %}  </th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td>
+                    总计{{ model_pages.paginator.count }}条
+                </td>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for obj in model_pages %}
+                <tr>
+                    {% build_table_rows obj admin_class %}
+                </tr>
+            {% empty %}
+                <th style="text-align: center">0{{ table_name }}</th>
+
+            {% endfor %}
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+                {% if model_pages.has_previous %}
+                    <li class=""><a href="?page={{ model_pages.previous_page_number }}">上页</a></li>
+                {% endif %}
+                {#                   <li class="active"><a>{{ query_sets.number }}</a></li>#}
+
+                {% for loop_counter in model_pages.paginator.page_range %}
+                    {% render_page_ele loop_counter model_pages filter_conditions %}
+                {% endfor %}
+
+                {% if model_pages.has_next %}
+                    <li class=""><a href="?page={{ model_pages.next_page_number }}">下页</a></li>
+                {% endif %}
+
+
+                {#                <li class="disabled"><a href="#">&laquo;</a></li>#}
+                {#                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>#}
+                {#                #}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
