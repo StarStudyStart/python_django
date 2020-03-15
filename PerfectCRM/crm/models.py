@@ -33,7 +33,7 @@ class Customer(models.Model):
         (2, '暂不入学'),
     )
     status = models.SmallIntegerField(default=0, choices=status_choices, verbose_name='状态')
-    date = models.DateTimeField(auto_now_add=True,verbose_name='创建日期')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='创建日期')
 
     def __str__(self):
         return 'name:%s,contact: %s' % (self.name, self.qq_number)
@@ -190,7 +190,8 @@ class UserProfile(models.Model):
     """账户表"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.ManyToManyField(Role)
-    profile_photo = models.ImageField()
+    profile_photo = models.ImageField(upload_to='images/', blank=True, null=True, default="/12.jpg")
+    nick_name = models.CharField(max_length=32, default="", verbose_name='昵称')
 
     def __str__(self):
         return self.user.username

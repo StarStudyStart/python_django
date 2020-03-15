@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from bg_management import bgadmin
-from bg_management.utils import after_filter
+from bg_management.utils import after_filter, after_search
 
 
 # Create your views here.
@@ -16,16 +16,17 @@ def model_list(request, app_name, table_name):
     """表单字段显示"""
     admins = bgadmin.enabled_admins
     admin_calss = admins[app_name][table_name]
-    model_lists, filter_conditions = after_filter(request, admin_calss)
+    after_filter_lists, filter_conditions = after_filter(request, admin_calss)
+    after_search_lists = after_search(request, after_filter_lists, admin_calss)
     # model_lists = admin_calss.model.objects.filter()
-    paginator = Paginator(model_lists, admin_calss.list_per_page)
+    paginator = Paginator(after_search_lists, admin_calss.list_per_page)
 
     page = request.GET.get('page')
-    model_pages = paginator.get_page(page)
+    handled_model_lists = paginator.get_page(page)
 
-    return render(request, 'bg_management/detail.html', {'admin_class': admin_calss,
-                                                         'model_lists': model_lists,
-                                                         'filter_conditions': filter_conditions,
-                                                         'app_name': app_name,
-                                                         'table_name': table_name,
-                                                         'model_pages': model_pages, })
+    return render(request, 'bg_management/table_obj.html', {'admin_class': admin_calss,
+                                                            'filter_conditions': filter_conditions,
+                                                            'app_name': app_name,
+                                                            'table_name': table_name,
+                                                            'handled_model_lists': handled_model_lists,
+                                                            'query': request.GET.get('_q', "")})
