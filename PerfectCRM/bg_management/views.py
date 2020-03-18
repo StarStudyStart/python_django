@@ -30,3 +30,7 @@ def model_list(request, app_name, table_name):
                                                             'table_name': table_name,
                                                             'handled_model_lists': handled_model_lists,
                                                             'query': request.GET.get('_q', "")})
+
+
+def model_list_change(request, app_name, table_name, id):
+    return render(request, 'bg_management/model_obj_change.html')
