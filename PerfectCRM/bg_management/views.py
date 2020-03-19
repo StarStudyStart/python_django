@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
+
 from bg_management import bgadmin
 from bg_management.utils import after_filter, after_search
+from bg_management.forms import create_model_form
 
 
 # Create your views here.
@@ -33,4 +35,18 @@ def model_list(request, app_name, table_name):
 
 
 def model_list_change(request, app_name, table_name, id):
-    return render(request, 'bg_management/model_obj_change.html')
+    """更新数据表"""
+    admin_class = bgadmin.enabled_admins[app_name][table_name]
+    model_form_class = create_model_form(admin_class)
+    obj = get_object_or_404(admin_class.model, id=id)
+
+    if request.method != 'POST':
+        # 显示原有数据
+        dynamic_forms = model_form_class(instance=obj)
+    else:
+        # 对比数据库中的数据，并更新
+        dynamic_forms = model_form_class(request.POST, instance=obj)
+        if dynamic_forms.is_valid():
+            dynamic_forms.save()
+
+    return render(request, 'bg_management/model_obj_change.html', {'forms': dynamic_forms, })
