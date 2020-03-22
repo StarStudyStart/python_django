@@ -1,0 +1,85 @@
+{% extends 'bg_management/index.html' %}
+{% load bgm_extras %}
+{% block container %}
+    <div class="panel panel-info">
+        <div class="panel-heading">{% get_verbose_name admin_class.model %}</div>
+        <div class="panel-body" style="margin-left: 0">
+            <form class="" method="get">
+                {# 循环过滤条件#}
+                <div class="row">
+                    {% for field_name in admin_class.list_filters %}
+                        <div class="col-lg-2">
+                            <span>{{ field_name }}</span>
+                            {% render_filter_ele field_name admin_class filter_conditions %}
+                        </div>
+                    {% endfor %}
+                    <div class="col-lg-2">
+                        <button type="SUBMIT" class="btn btn-success" style="margin-top: 18px">过滤</button>
+{#                        <button type="button" class="btn btn-success" style="margin-top: 20px">show all</button>#}
+                    </div>
+                </div>
+                {# 循环搜索条件#}
+                <div class="row">
+                    <div class="input-group col-lg-4" style="margin-left: 15px;margin-top: 5px ">
+                        <input type="text" name="_q" class="form-control" value="{{ query }}"
+                               placeholder="Search for {% for search_field in admin_class.search_fields %}{{ search_field }}{% if not forloop.last %},{% endif %}{% empty %}id{% endfor %}
+                               ">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"
+                        >搜索</button></span>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        {# 过滤或搜索后的数据列表 #}
+        <table class="table">
+        {# 表头 #}
+            <thead>
+            <tr>
+                {% for column in admin_class.list_display %}
+                    <th>{% return_field_verbose_name admin_class column %}  </th>
+                {% endfor %}
+            </tr>
+            </thead>
+            {# 每行数据 #}
+            <tbody>
+            {% for obj in handled_model_lists %}
+                <tr>
+                {# 获取每行数据 #}
+                    {% build_table_rows request obj admin_class %}
+                </tr>
+            {% empty %}
+                <th style="text-align: center">0{{ table_name }}</th>
+
+            {% endfor %}
+            </tbody>
+            <th>总计{{ handled_model_lists.paginator.count }}条</th>
+        </table>
+
+        {# 分页导航 #}
+        <nav>
+            <ul class="pagination">
+
+                {% if handled_model_lists.has_previous %}
+                    <li class=""><a href="?page={{ handled_model_lists.previous_page_number }}&_q={{ query }}">上页</a></li>
+                {% endif %}
+                {#                   <li class="active"><a>{{ query_sets.number }}</a></li>#}
+
+            {# 循环遍历所有页数 #}
+                {% for loop_counter in handled_model_lists.paginator.page_range %}
+                    {% render_page_ele loop_counter handled_model_lists filter_conditions query %}
+                {% endfor %}
+
+                {% if handled_model_lists.has_next %}
+                    <li class=""><a href="?page={{ handled_model_lists.next_page_number }}&_q={{ query }}">下页</a></li>
+                {% endif %}
+
+
+                {#                <li class="disabled"><a href="#">&laquo;</a></li>#}
+                {#                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>#}
+                {#                #}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

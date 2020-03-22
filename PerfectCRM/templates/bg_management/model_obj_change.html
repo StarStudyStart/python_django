@@ -1,0 +1,22 @@
+{% extends 'bg_management/index.html' %}
+{% load bgm_extras %}
+{% block container %}
+    <form class="form-horizontal" method="post">
+         {% csrf_token %}
+        {% for field in forms %}
+            {{ field.errors }}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label_tag }}</label>
+                <div class="col-sm-6">
+                    {{ field }}
+                </div>
+            </div>
+            {{ field.help_text }}
+        {% endfor %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Save</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
